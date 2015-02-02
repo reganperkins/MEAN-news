@@ -41,7 +41,7 @@ angular.module('meanNews', ['ui.router'])
         $scope.posts.push({
           title: $scope.title,
           link: $scope.link, 
-          upvote: 0,
+          upvotes: 0,
           comments: [
             {author: 'Joe', body: 'Cool post!', upvotes: 0},
             {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
@@ -71,6 +71,9 @@ angular.module('meanNews', ['ui.router'])
           upvotes: 0
         });
         $scope.body = '';
+      };
+      $scope.incrementUpvotes = function(comments){
+        comments.upvotes += 1;
       };
     }
   ]);
