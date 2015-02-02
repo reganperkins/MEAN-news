@@ -10,7 +10,17 @@ angular.module('meanNews', [])
         {title: 'post 4', upvotes: 10 }
       ];
       $scope.addPost = function(){
-        $scope.posts.push({title: 'a new post!', upvote: 0 });
+        if(!$scope.title || $scope.title === '') { return; }
+        $scope.posts.push({
+          title: $scope.title,
+          link: $scope.link, 
+          upvote: 0 
+        });
+        $scope.title = '';
+        $scope.link = '';
+      };
+      $scope.incrementUpvotes = function(post){
+        post.upvotes += 1;
       };
     }
   ]);

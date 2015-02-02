@@ -6,17 +6,25 @@
   <script src='app.js'></script>
   <title>MEAN news</title>
 </head>
-<body ng-app='meanNews' ng-controller='MainCtrl'>
+<body ng-app="meanNews" ng-controller="MainCtrl">
 
   <div>{{test}}</div>
 
   <div ng-repeat='post in posts | orderBy: "-upvotes"'>
-    {{post.title}} - upvotes {{post.upvotes}}
+    <a ng-show="post.link" href="{{post.link}}">
+      {{post.title}} 
+    </a>
+    <span ng-hide="post.link">
+      {{post.title}}
+    </span>
+    - upvotes {{post.upvotes}}
+    <span ng-click="incrementUpvotes(post)">^</span>
   </div>
 
-  <form ng-submit="addPost">
-    <input type="text" ng-modal="title"></input>
-    <button type="submit">Post</button>
+  <form ng-submit="addPost()">
+  <input type="text" ng-model="title" placeholder="title"></input>
+  <input type="text" ng-model="link" placeholder="add a link"></input>
+  <button type="submit">Post</button>
   </form>
 
 </body>
