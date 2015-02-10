@@ -5,13 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var mongoose = require('mongoose');
+require('./models/Posts');
+require('./models/Comments');
 mongoose.connect('mongodb://localhost/news');
-require('models.Posts');
-require('modals.Comments');
+
+var routes = require('./routes/index'); //this needs to be called after mongoose schemas are set (as above)
+var users = require('./routes/users');
 
 var app = express();
 
